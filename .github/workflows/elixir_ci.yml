@@ -1,0 +1,54 @@
+name: Elixir CI
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  elixir_ci:
+    env:
+      otp-version: '24.0' # Define the OTP version [required]
+      elixir-version: '1.12.0' # Define the Elixir version [required]
+
+    name: Basic CI steps
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Erlang/OTP + Elixir
+      uses: erlef/setup-beam@v1
+      with:
+        otp-version: ${{ env.otp-version }}
+        elixir-version: ${{ env.elixir-version }}
+
+    # speed up run times by caching build artifacts
+    - name: Restore dependency/build cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          deps
+          _build
+        key: ${{ runner.os }}-mix-${{ env.otp-version }}-${{ env.elixir-version }}-${{ hashFiles('**/mix.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-mix-${{ env.otp-version }}-${{ env.elixir-version }}-
+          ${{ runner.os }}-mix-${{ env.otp-version }}-
+          ${{ runner.os }}-mix-
+        
+    - name: Dependencies
+      run: |
+        mix deps.clean --unused --unlock
+        mix deps.get
+        mix deps.compile
+
+    - name: Code
+      run: |
+        mix format --check-formatted
+        mix compile --warnings-as-errors
+
+    - name: Test
+      run: |
+      mix test --warnings-as-errors
