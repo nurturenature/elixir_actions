@@ -14,6 +14,7 @@ Typical `mix`
 - compile
 - test
 - with a few extra flags and tasks for completeness
+  - even `dialyzer` to work the cache
 
 Caching really helps. ⏳ to a relative 🚀.
 - paths
