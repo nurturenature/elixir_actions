@@ -12,7 +12,7 @@
 - easy to use, just works
 
 ```yaml
-- name: Install Erlang/OTP + Elixir
+- name: Install Erlang/OTP + Elixir 🏗️
   id: setup-beam
   uses: erlef/setup-beam@v1
   with:
@@ -28,10 +28,10 @@
 ## Basic CI With Caching
 
 Typical `mix` steps
-- deps (+compile)
-- compile (+format, credo, dialyzer, docs)
-- test (+cover, coverage)
-- upload artifacts (doc, cover)
+- deps (+ compile) 🔗
+- compile (+ format, credo, dialyzer, docs) 🔧
+- test (+ cover, coverage) 🦺
+- upload artifacts (doc, cover) 📚
 
 ### Caching Can *Really* Help (⏳ to a relative 🚀)
 - paths
