@@ -25,16 +25,15 @@ jobs:
         elixir-version: '1.12.0' # version range or exact (required)
         # install-hex: true (default)
         # install-rebar: true (default)
-      # outputs:
-        # (opt, elixir, rebar3)-version (exact version installed)
+      # outputs: ${steps.setup-beam.outputs.(opt, elixir, rebar3)-version} (exact version installed)        
+
     - name: Restore dependency/build cache 🗃️
       uses: actions/cache@v2
       with:
         path: |
           deps
           _build
-        # cache key is hierarchical:
-        #   OS, otp-version, elixir-version, mix.lock
+        # cache key is hierarchical: OS, otp-version, elixir-version, mix.lock
         key: ${{ runner.os }}-mix-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}-${{ hashFiles('**/mix.lock') }}
         restore-keys: |
           ${{ runner.os }}-mix-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}-

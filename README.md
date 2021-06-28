@@ -6,10 +6,14 @@
 
 [![🤔 GitHub action failied?][elixir_ci-img]][elixir_ci]
 
+### See [`elixir_ci.yml`](https://github.com/nurturenature/elixir_actions/blob/main/.github/workflows/elixir_ci.yml) for a complete example to use.
+
+<hr>
+
 ## Uses [@erlef](https://github.com/erlef/)([Erlang Ecosystem Foundation](https://erlef.org)) [`setup-beam`](https://github.com/erlef/setup-beam) Action
 
 - [recommended](https://github.com/actions/setup-elixir#setup-elixir) by GitHub
-- easy to use, just works
+- easy to use
 
 ```yaml
 - name: Install Erlang/OTP + Elixir 🏗️
@@ -18,40 +22,39 @@
   with:
     otp-version: '24.0' # version range or exact (required)
     elixir-version: '1.12.0' # version range or exact (required)
-        # install-hex: true (default)
-        # install-rebar: true (default)
-  # outputs:
-    # (opt, elixir, rebar3)-version (exact version installed)
+    # install-hex: true (default)
+    # install-rebar: true (default)
+  # outputs: ${steps.setup-beam.outputs.(opt, elixir, rebar3)-version} (exact version installed)
         
 ```
 
 ## Basic CI With Caching
 
 Typical `mix` steps
-- deps (+ compile) 🔗
+- deps 🔗
 - compile (+ format, credo, dialyzer, docs) 🔧
-- test (+ cover, coverage) 🦺
+- test (+ cover/age) 🦺
 - upload artifacts (doc, cover) 📚
 
-### Caching Can *Really* Help (⏳ to a relative 🚀)
+### Caching Can *Really* Help
 - paths
   - `deps`
   - `_build`
 - cache key is hierarchical:
     - OS, otp-version, elixir-version, mix.lock
 - on cache miss, key is repeatedly trimmed to be more general
-- saves GitHub action minutes ⏱️ in addition to developer time
+- saves:
+  - personal time ⏱️
+  - GitHub account action minutes 📉
  
-
-### See [`elixir_ci.yml`](https://github.com/nurturenature/elixir_actions/blob/main/.github/workflows/elixir_ci.yml).
-
 <hr>
 
-A results status badge is created by the action:
+Action generates a results status badge:
+
+[![🤔 GitHub action failied?][elixir_ci-img]][elixir_ci]
+
+for use in `readme.md`, dashboards, etc:
 
 ```html
 https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE>/badge.svg
 ```
-[![🤔 GitHub action failied?][elixir_ci-img]][elixir_ci]
-
-for use in `readme.md`, dashboards, etc.
