@@ -21,8 +21,8 @@ jobs:
       id: setup-beam
       uses: erlef/setup-beam@v1
       with:
-        otp-version: '24.0' # Version range or exact (required)
-        elixir-version: '1.12.0' # Version range or exact (required)
+        otp-version: '24.0' # version range or exact (required)
+        elixir-version: '1.12.0' # version range or exact (required)
         # install-hex: true (default)
         # install-rebar: true (default)
 

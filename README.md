@@ -2,24 +2,52 @@
 [elixir_ci]: https://github.com/nurturenature/elixir_actions/actions/workflows/elixir_ci.yml
 [elixir_ci-img]: https://github.com/nurturenature/elixir_actions/actions/workflows/elixir_ci.yml/badge.svg
 
-# *Example GitHub actions to work with Elixir.*
+# ***Elixir Actions for GitHub***
 
 [![🤔 GitHub action failied?][elixir_ci-img]][elixir_ci]
 
-### Basic CI with caching
+## Uses @erlef [`setup-beam`](https://github.com/erlef/setup-beam) Action
 
-Typical `mix`
-- deps
-- compile
-- test
-- with a few extra flags and tasks for completeness
-  - even `dialyzer` to work the cache
+- [recommended](https://github.com/actions/setup-elixir#setup-elixir) by GitHub
+- easy to use, just works
 
-Caching can *really* help, ⏳ to a relative 🚀.
+```yaml
+- name: Install Erlang/OTP + Elixir
+  id: setup-beam
+  uses: erlef/setup-beam@v1
+  with:
+    otp-version: '24.0' # version range or exact (required)
+    elixir-version: '1.12.0' # version range or exact (required)
+        # install-hex: true (default)
+        # install-rebar: true (default)
+```
+
+## Basic CI With Caching
+
+Typical `mix` steps
+- deps (+compile)
+- compile (+format, credo, dialyzer, docs)
+- test (+cover, coverage)
+
+### Caching Can *Really* Help (⏳ to a relative 🚀)
 - paths
   - `deps`
   - `_build`
-- cache key
-  - OS + OTP ver + Elixir ver + hash(mix.lock)
+- cache key is hierarchical:
+    - OS, otp-version, elixir-version, mix.lock
+- on cache miss, key is repeatedly trimmed to be more general
+- saves GitHub action minutes in addition to developer time
  
-See [`elixir_ci.yml`](https://github.com/nurturenature/elixir_actions/blob/main/.github/workflows/elixir_ci.yml).
+
+### See [`elixir_ci.yml`](https://github.com/nurturenature/elixir_actions/blob/main/.github/workflows/elixir_ci.yml).
+
+<hr>
+
+An results status badge is created by the action:
+
+```html
+https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE>/badge.svg
+```
+[![🤔 GitHub action failied?][elixir_ci-img]][elixir_ci]
+
+for use in `readme.md`, dashboards, etc.
