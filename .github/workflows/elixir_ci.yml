@@ -35,6 +35,7 @@ jobs:
           _build
         # cache key is hierarchical: OS, otp-version, elixir-version, mix.lock
         key: ${{ runner.os }}-mix-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}-${{ hashFiles('**/mix.lock') }}
+        # restore keys are tried on cache misses, and only match the key prefix
         restore-keys: |
           ${{ runner.os }}-mix-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}-
           ${{ runner.os }}-mix-${{ steps.setup-beam.outputs.otp-version }}-

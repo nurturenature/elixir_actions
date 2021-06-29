@@ -8,6 +8,8 @@
 
 ### See [`elixir_ci.yml`](https://github.com/nurturenature/elixir_actions/blob/main/.github/workflows/elixir_ci.yml) for a complete example to use.
 
+### See [`Elixir CI Workflow 🧪`](https://github.com/nurturenature/elixir_actions/actions/workflows/elixir_ci.yml) for workflow runs for this repository.
+
 <hr>
 
 ## Uses [@erlef](https://github.com/erlef/)([Erlang Ecosystem Foundation](https://erlef.org)) [`setup-beam`](https://github.com/erlef/setup-beam) Action
@@ -36,16 +38,27 @@ Typical `mix` steps
 - test (+ cover/age) 🦺
 - upload artifacts (doc, cover) 📚
 
-### Caching Can *Really* Help
-- paths
-  - `deps`
-  - `_build`
-- cache key is hierarchical:
-    - OS, otp-version, elixir-version, mix.lock
-- on cache miss, key is repeatedly trimmed to be more general
-- saves:
-  - personal time ⏱️
-  - GitHub account action minutes 📉
+## Caching Can *Really* Help
+
+Save:
+- personal time ⏱️
+- GitHub account action minutes 📉
+
+```yaml
+- name: Restore dependency/build cache 🗃️
+  uses: actions/cache@v2
+  with:
+    path: |
+      deps
+      _build
+    # cache key is hierarchical: OS, otp-version, elixir-version, mix.lock
+    key: ${{ runner.os }}-mix-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}-${{ hashFiles('**/mix.lock') }}
+    # restore keys are tried on cache misses, and only match the key prefix
+    restore-keys: |
+      ${{ runner.os }}-mix-${{ steps.setup-beam.outputs.otp-version }}-${{ steps.setup-beam.outputs.elixir-version }}-
+      ${{ runner.os }}-mix-${{ steps.setup-beam.outputs.otp-version }}-
+      ${{ runner.os }}-mix-
+```
  
 <hr>
 
