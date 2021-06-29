@@ -6,13 +6,13 @@
 
 [![🤔 GitHub action failied?][elixir_ci-img]][elixir_ci]
 
-### See [`elixir_ci.yml`](https://github.com/nurturenature/elixir_actions/blob/main/.github/workflows/elixir_ci.yml) for a complete example to use.
+### See [`elixir_ci.yml`](https://github.com/nurturenature/elixir_actions/blob/main/.github/workflows/elixir_ci.yml) (complete example to use)
 
-### See [`Elixir CI Workflow 🧪`](https://github.com/nurturenature/elixir_actions/actions/workflows/elixir_ci.yml) for workflow runs for this repository.
+### See [`Elixir CI Workflow 🧪`](https://github.com/nurturenature/elixir_actions/actions/workflows/elixir_ci.yml) (workflow runs for this repository)
 
 <hr>
 
-## Uses [@erlef](https://github.com/erlef/)([Erlang Ecosystem Foundation](https://erlef.org)) [`setup-beam`](https://github.com/erlef/setup-beam) Action
+### Uses [@erlef](https://github.com/erlef/)([Erlang Ecosystem Foundation](https://erlef.org)) [`setup-beam`](https://github.com/erlef/setup-beam) Action
 
 - [recommended](https://github.com/actions/setup-elixir#setup-elixir) by GitHub
 - easy to use
@@ -30,7 +30,7 @@
         
 ```
 
-## Basic CI With Caching
+### Basic CI With Caching
 
 Typical `mix` steps
 - deps 🔗
@@ -38,7 +38,7 @@ Typical `mix` steps
 - test (+ cover/age) 🦺
 - upload artifacts (doc, cover) 📚
 
-## Caching Can *Really* Help
+### Caching Can *Really* Help
 
 Save:
 - personal time ⏱️
