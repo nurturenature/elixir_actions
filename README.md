@@ -12,7 +12,7 @@
 
 <hr>
 
-### Uses [@erlef](https://github.com/erlef/)([Erlang Ecosystem Foundation](https://erlef.org)) [`setup-beam`](https://github.com/erlef/setup-beam) Action
+### Uses [@erlef](https://github.com/erlef/)([Erlang Ecosystem Foundation](https://erlef.org)) [`setup-beam`](https://github.com/erlef/setup-beam)
 
 - [recommended](https://github.com/actions/setup-elixir#setup-elixir) by GitHub
 - easy to use
@@ -40,7 +40,7 @@ Typical `mix` steps
 
 ### Caching Can *Really* Help
 
-Save:
+Save
 - personal time ⏱️
 - GitHub account action minutes 📉
 
