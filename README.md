@@ -26,7 +26,7 @@
     elixir-version: '1.12.0' # version range or exact (required)
     # install-hex: true (default)
     # install-rebar: true (default)
-  # outputs: ${steps.setup-beam.outputs.(opt, elixir, rebar3)-version} (exact version installed)
+  # outputs: ${steps.setup-beam.outputs.(otp, elixir, rebar3)-version} (exact version installed)
         
 ```
 
